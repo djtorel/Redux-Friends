@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Friends from './Friends/Friends';
+import FriendsList from './Friends/FriendsList';
 
 const ProtectedRoute = ({ history }) => {
   return (
     <div>
       {localStorage.token ? (
         <div>
-          <Friends />{' '}
+          <FriendsList />
         </div>
       ) : (
         history.push('/login')
