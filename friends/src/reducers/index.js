@@ -12,6 +12,9 @@ const initialState = {
   error: '',
   loggingIn: false,
   fetchingFriends: false,
+  deletingFriends: false,
+  savingFriends: false,
+  updatingFriend: false,
 };
 
 export default (state = initialState, { type, payload }) => {
