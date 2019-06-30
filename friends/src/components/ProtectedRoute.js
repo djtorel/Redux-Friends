@@ -1,18 +1,18 @@
 import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
 
-import FriendsList from './Friends/FriendsList';
-
-const ProtectedRoute = ({ history }) => {
+const ProtectedRoute = ({ component: Component, ...rest }) => {
   return (
-    <div>
-      {localStorage.token ? (
-        <div>
-          <FriendsList />
-        </div>
-      ) : (
-        history.push('/login')
-      )}
-    </div>
+    <Route
+      {...rest}
+      render={props => {
+        return localStorage.token ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/login" />
+        );
+      }}
+    />
   );
 };
 

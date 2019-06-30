@@ -5,6 +5,7 @@ import './App.css';
 
 import Login from './components/Login/Login';
 import ProtectedRoute from './components/ProtectedRoute';
+import FriendsList from './components/Friends/FriendsList';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <Link to="/friends">Friends</Link>
         </nav>
         <Route path="/login" component={Login} />
-        <Route exact path="/friends" component={ProtectedRoute} />
+        <ProtectedRoute exact path="/friends" component={FriendsList} />
       </div>
     </Router>
   );

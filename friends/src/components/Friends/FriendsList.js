@@ -7,8 +7,10 @@ import Friend from './Friend';
 
 const Friends = ({ getFriends, friends, error, fetchingFriends }) => {
   useEffect(() => {
-    getFriends();
-  }, [getFriends]);
+    if (friends.length === 0) {
+      getFriends();
+    }
+  }, [friends.length, getFriends]);
   return (
     <div>
       {error ? (
