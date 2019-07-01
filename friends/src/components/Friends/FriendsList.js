@@ -1,16 +1,27 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 
 import { getFriends } from '../../actions';
 import Friend from './Friend';
 
-const Friends = ({ getFriends, friends, error, fetchingFriends }) => {
+const FriendsList = () => {
+  const { friends, error, fetchingFriends } = useSelector(
+    ({ friends, error, fetchingFriends }) => ({
+      friends,
+      error,
+      fetchingFriends,
+    })
+  );
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (friends.length === 0) {
-      getFriends();
+      dispatch(getFriends());
     }
-  }, [friends.length, getFriends]);
+  }, [dispatch, friends.length]);
+
   return (
     <div>
       {error ? (
@@ -30,13 +41,4 @@ const Friends = ({ getFriends, friends, error, fetchingFriends }) => {
   );
 };
 
-const mapStateToProps = ({ friends, error, fetchingFriends }) => ({
-  friends,
-  error,
-  fetchingFriends,
-});
-
-export default connect(
-  mapStateToProps,
-  { getFriends }
-)(Friends);
+export default FriendsList;
