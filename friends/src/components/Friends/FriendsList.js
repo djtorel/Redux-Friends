@@ -4,6 +4,7 @@ import Loader from 'react-loader-spinner';
 
 import { getFriends } from '../../actions';
 import Friend from './Friend';
+import FriendForm from './FriendForm';
 
 const FriendsList = () => {
   const { friends, error, fetchingFriends } = useSelector(
@@ -28,6 +29,9 @@ const FriendsList = () => {
         <div>{error}</div>
       ) : (
         <div>
+          <div>
+            <FriendForm />
+          </div>
           {fetchingFriends ? (
             <Loader type="Grid" color="#00BFFF" height="50" width="50" />
           ) : (

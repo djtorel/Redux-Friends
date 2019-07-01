@@ -34,6 +34,22 @@ export const getFriends = () => dispatch => {
     });
 };
 
+export const ADD_FRIEND_START = 'ADD_FRIEND_START';
+export const ADD_FRIEND_SUCCESS = 'ADD_FRIEND_SUCCESS';
+export const ADD_FRIEND_FAILURE = 'ADD_FRIEND_FAILURE';
+
+export const addFriend = payload => dispatch => {
+  dispatch({ type: ADD_FRIEND_START });
+  axiosWithAuth()
+    .post('/friends', payload)
+    .then(({ data }) => {
+      dispatch({ type: ADD_FRIEND_SUCCESS, payload: data });
+    })
+    .catch(({ response: { data: { error } } }) => {
+      dispatch({ type: ADD_FRIEND_FAILURE, payload: error });
+    });
+};
+
 export const UPDATE_FRIEND_START = 'UPDATE_FRIEND_START';
 export const UPDATE_FRIEND_SUCCESS = 'UPDATE_FRIEND_SUCCESS';
 export const UPDATE_FRIEND_FAILURE = 'UPDATE_FRIEND_FAILURE';

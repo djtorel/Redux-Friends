@@ -5,6 +5,9 @@ import {
   FETCH_FRIENDS_START,
   FETCH_FRIENDS_SUCCESS,
   FETCH_FRIENDS_FAILURE,
+  ADD_FRIEND_START,
+  ADD_FRIEND_SUCCESS,
+  ADD_FRIEND_FAILURE,
   UPDATE_FRIEND_START,
   UPDATE_FRIEND_SUCCESS,
   UPDATE_FRIEND_FAILURE,
@@ -60,6 +63,25 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         fetchingFriends: false,
+        error: payload,
+      };
+    case ADD_FRIEND_START:
+      return {
+        ...state,
+        savingFriends: true,
+        error: '',
+      };
+    case ADD_FRIEND_SUCCESS:
+      return {
+        ...state,
+        friends: payload,
+        savingFriends: false,
+        error: '',
+      };
+    case ADD_FRIEND_FAILURE:
+      return {
+        ...state,
+        savingFriends: false,
         error: payload,
       };
     case UPDATE_FRIEND_START:
