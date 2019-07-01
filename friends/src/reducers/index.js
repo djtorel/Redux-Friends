@@ -5,6 +5,9 @@ import {
   FETCH_FRIENDS_START,
   FETCH_FRIENDS_SUCCESS,
   FETCH_FRIENDS_FAILURE,
+  UPDATE_FRIEND_START,
+  UPDATE_FRIEND_SUCCESS,
+  UPDATE_FRIEND_FAILURE,
 } from '../actions';
 
 const initialState = {
@@ -54,6 +57,25 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         fetchingFriends: false,
+        error: payload,
+      };
+    case UPDATE_FRIEND_START:
+      return {
+        ...state,
+        updatingFriend: true,
+        error: '',
+      };
+    case UPDATE_FRIEND_SUCCESS:
+      return {
+        ...state,
+        friends: payload,
+        updatingFriend: false,
+        error: '',
+      };
+    case UPDATE_FRIEND_FAILURE:
+      return {
+        ...state,
+        updatingFriend: false,
         error: payload,
       };
     default:

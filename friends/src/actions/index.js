@@ -33,3 +33,19 @@ export const getFriends = () => dispatch => {
       dispatch({ type: FETCH_FRIENDS_FAILURE, payload: error });
     });
 };
+
+export const UPDATE_FRIEND_START = 'UPDATE_FRIEND_START';
+export const UPDATE_FRIEND_SUCCESS = 'UPDATE_FRIEND_SUCCESS';
+export const UPDATE_FRIEND_FAILURE = 'UPDATE_FRIEND_FAILURE';
+
+export const updateFriend = (id, payload) => dispatch => {
+  dispatch({ type: UPDATE_FRIEND_START });
+  axiosWithAuth()
+    .put(`/friends/${id}`, payload)
+    .then(({ data }) => {
+      dispatch({ type: FETCH_FRIENDS_SUCCESS, payload: data });
+    })
+    .catch(({ response: { data: { error } } }) => {
+      dispatch({ type: FETCH_FRIENDS_FAILURE, payload: error });
+    });
+};
