@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { updateFriend } from '../../actions/';
+import { updateFriend, deleteFriend } from '../../actions/';
 
 const Friend = ({ name, age, email, id }) => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -59,7 +59,7 @@ const Friend = ({ name, age, email, id }) => {
       <div>Age: {age}</div>
       <div>Email: {email}</div>
       <button onClick={() => setIsEditMode(true)}>Edit</button>
-      <button>Delete</button>
+      <button onClick={() => dispatch(deleteFriend(id))}>Delete</button>
     </div>
   );
 };
