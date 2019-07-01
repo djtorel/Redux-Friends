@@ -1,7 +1,29 @@
-import React, { useReducer } from 'react';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
+import { useReducer } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { addFriend } from '../../actions';
+
+const formCSS = css`
+  display: flex;
+  height: 30px;
+  margin-bottom 20px;
+`;
+
+const buttonCSS = css`
+  height: 30px;
+  background-color: #5a5a5a;
+  border: 1px solid #7a7a7a;
+  color: #dadada;
+`;
+
+const inputCSS = css`
+  background-color: #5a5a5a;
+  border: 1px solid #7a7a7a;
+  margin-right: 3px;
+  color: #dadada;
+`;
 
 const FriendForm = () => {
   const [userInput, setUserInput] = useReducer(
@@ -28,26 +50,34 @@ const FriendForm = () => {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form css={formCSS} onSubmit={handleSubmit}>
         <input
+          css={inputCSS}
           type="text"
           name="name"
           value={userInput.name}
           onChange={handleInput}
+          placeholder="Name..."
         />
         <input
+          css={inputCSS}
           type="number"
           name="age"
           value={userInput.age}
           onChange={handleInput}
+          placeholder="Age..."
         />
         <input
+          css={inputCSS}
           type="email"
           name="email"
           value={userInput.email}
           onChange={handleInput}
+          placeholder="Email..."
         />
-        <button onSubmit={handleSubmit}>Add Friend</button>
+        <button css={buttonCSS} onSubmit={handleSubmit}>
+          Add Friend
+        </button>
       </form>
     </div>
   );

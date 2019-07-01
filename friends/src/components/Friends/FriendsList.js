@@ -1,10 +1,25 @@
-import React, { useEffect } from 'react';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 
 import { getFriends } from '../../actions';
 import Friend from './Friend';
 import FriendForm from './FriendForm';
+
+const container = css`
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  align-items: center;
+  justif-content: center;
+  width: 100%;
+  background-color: #3a3a3a;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+`;
 
 const FriendsList = () => {
   const { friends, error, fetchingFriends } = useSelector(
@@ -24,7 +39,7 @@ const FriendsList = () => {
   }, [dispatch, friends.length]);
 
   return (
-    <div>
+    <div css={container}>
       {error ? (
         <div>{error}</div>
       ) : (
@@ -32,13 +47,15 @@ const FriendsList = () => {
           <div>
             <FriendForm />
           </div>
-          {fetchingFriends ? (
-            <Loader type="Grid" color="#00BFFF" height="50" width="50" />
-          ) : (
-            friends.map(({ name, age, email, id }) => (
-              <Friend key={id} name={name} age={age} email={email} id={id} />
-            ))
-          )}
+          <div>
+            {fetchingFriends ? (
+              <Loader type="Grid" color="#00BFFF" height="50" width="50" />
+            ) : (
+              friends.map(({ name, age, email, id }) => (
+                <Friend key={id} name={name} age={age} email={email} id={id} />
+              ))
+            )}
+          </div>
         </div>
       )}
     </div>
