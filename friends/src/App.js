@@ -38,7 +38,6 @@ const container = css`
   align-items: center;
   justif-content: center;
   width: 100%;
-  ${'' /* background-color: #5a5a5a; */}
 `;
 
 function App() {

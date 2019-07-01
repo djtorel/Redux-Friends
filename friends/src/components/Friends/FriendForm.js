@@ -5,10 +5,18 @@ import { useDispatch } from 'react-redux';
 
 import { addFriend } from '../../actions';
 
+const container = css`
+  display: flex;
+  align-items: center;
+  justif-content: center;
+  width: 100%;
+  margin-left: 15px;
+`;
+
 const formCSS = css`
   display: flex;
   height: 30px;
-  margin-bottom 20px;
+  margin: 20px 0 20px 0;
 `;
 
 const buttonCSS = css`
@@ -49,7 +57,7 @@ const FriendForm = () => {
     }
   };
   return (
-    <div>
+    <div css={container}>
       <form css={formCSS} onSubmit={handleSubmit}>
         <input
           css={inputCSS}

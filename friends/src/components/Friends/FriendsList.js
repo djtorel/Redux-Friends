@@ -16,9 +16,15 @@ const container = css`
   justif-content: center;
   width: 100%;
   background-color: #3a3a3a;
-  padding: 10px;
   border-radius: 4px;
   margin-bottom: 20px;
+  padding-bottom: 10px;
+`;
+
+const wrapper = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const FriendsList = () => {
@@ -43,7 +49,7 @@ const FriendsList = () => {
       {error ? (
         <div>{error}</div>
       ) : (
-        <div>
+        <div css={wrapper}>
           <div>
             <FriendForm />
           </div>
